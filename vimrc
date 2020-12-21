@@ -6,26 +6,49 @@ filetype off                        "关闭文件类型检测
 set rtp+=~/.vim/bundle/Vundle.vim   "设置Vundle路径
 call vundle#begin()
 Plugin 'gmarik/vundle'
-Plugin 'OmniCppComplete'            "自动补全
-Plugin 'AutoComplPop'               "自动提示
-Plugin 'ccvext.vim'                "自动生成ctags及cscope数据库
+" Plugin 'OmniCppComplete'            "自动补全
+" Plugin 'AutoComplPop'               "自动提示
+" Plugin 'ccvext.vim'                "自动生成ctags及cscope数据库
 Plugin 'molokai'                    "molokai主题
 Plugin 'The-NERD-tree'              "NERD目录树
 Plugin 'taglist.vim'                "函数变量列表
-Plugin 'majutsushi/tagbar'          "显示对象
+" Plugin 'majutsushi/tagbar'          "显示对象
+Plugin 'preservim/tagbar'          "显示对象
 Plugin 'Raimondi/delimitMate'       "括号补全
-Plugin 'fholgado/minibufexpl.vim'   "管理打开文件"
+Plugin 'fholgado/minibufexpl.vim'   "管理打开文件
 call vundle#end()
+
+
 
 "主题外观设置
 filetype on                         "启用文件类型侦测
-colorscheme molokai
+" colorscheme molokai
 syntax on                           "设置语法高亮
 set nu                              "设置行号
 set cursorline                      "设置行高亮
-set cursorcolumn                    "设置列高亮
+" set cursorcolumn                    "设置列高亮
 set laststatus=2                    "启用状态栏信息
 set cmdheight=2                     "设置命令行为2行
+set t_Co=256
+
+
+"set encoding'
+set fileencodings=utf-8,ucs-bom,gb18030,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+"highlithing current line and column'
+set showmatch
+
+set softtabstop=2
+set autoindent
+set wrap
+
+"set paste mode
+set paste
+
+"show space and tab
+set listchars=tab:>-,trail:-
 
 
 "缩进与格式设置
@@ -33,8 +56,8 @@ filetype plugin on                  "针对不同的文件类型加载对应的�
 filetype plugin indent on           "启用缩进
 set smartindent                     "启用智能对齐方式
 set expandtab                       "将Tab键转换为空格
-set tabstop=4                       "设置Tab键的宽度，可以更改，如：宽度为2
-set shiftwidth=4                    "换行时自动缩进宽度，可更改（宽度同tabstop）
+set tabstop=2                       "设置Tab键的宽度，可以更改，如：宽度为2
+set shiftwidth=2                    "换行时自动缩进宽度，可更改（宽度同tabstop）
 set smarttab                        "指定按一次backspace就删除shiftwidth宽度
 set scrolloff=4     " 光标移动到buffer的顶部和底部时保持3行距离
 
@@ -128,7 +151,7 @@ highlight PmenuThumb guibg=Black
 
 "Tagbar插件配置
 let g:tagbar_width=30                       "设置窗口宽度
-let g:tagbar_right=1                         "在右侧窗口中显示
+let g:tagbar_right=0                         "在右侧窗口中显示
 
 "Tlist
 let Tlist_Show_One_File=1                   "只显示当前文件的tags
@@ -137,8 +160,11 @@ let Tlist_Exit_OnlyWindow=1
 "如果Taglist窗口是最后一个窗口则退出Vim
 let Tlist_File_Fold_Auto_Close=1            "自动折叠
 let Tlist_WinWidth=30                       "设置窗口宽度
-let Tlist_Use_Right_Window=1                "在右侧窗口中显示
-
+"let Tlist_Use_Right_Window=1                "在右侧窗口中显示
+let Tlist_Auto_Open=1                       "打开C文件自动显示
+set tags=tags;
+set autochdir
+nmap ,F8 :TlistToogle 
 " -----------------------------------------------------------------------------
 "  < cscope 工具配置 >
 "-----------------------------------------------------------------------------
@@ -189,6 +215,7 @@ highlight MBEVisibleNormal term=bold cterm=bold gui=bold guibg=Gray guifg=Black 
 highlight MBEChanged ctermfg=DarkRed guibg=Red guifg=DarkRed
 " buffers that HAVE CHANGED and are VISIBLE
 highlight MBEVisibleChanged term=bold cterm=bold gui=bold guibg=DarkRed guifg=Black ctermbg=Blue ctermfg=Red
+hi comment ctermfg=darkyellow
 
 nnoremap ( :MBEbp<CR>
 nnoremap ) :MBEbn<CR>

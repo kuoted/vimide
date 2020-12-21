@@ -8,9 +8,9 @@ then
     brew install ctags cscope
 elif [ "$(uname -s)" = "Linux" ]
 then
-    yum install ctags cscope
+"    yum install ctags cscope
 else
-    sudo apt-get install ctags cscope
+"		sudo apt-get install ctags cscope
 fi
 
 chmod +x $(pwd)/upcs 
